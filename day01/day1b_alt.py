@@ -1,4 +1,4 @@
-fname = "input"
+fname = "day01/input"
 
 # list with all numbers spelled out
 spelled_numbers = [
@@ -15,6 +15,21 @@ spelled_numbers = [
 
 
 def check_num(line, spelled_numbers):
+    """
+    Find the first number in a line (either spelled out or a digit)
+
+    Parameters
+    ----------
+    line : str
+        Line of text where numbers must be located
+    spelled_numbers : list of str
+        List of the spelled out numbers
+
+    Returns
+    -------
+    int
+        Digit corresponding to the first found number
+    """
     for i, char in enumerate(line):
         # Append the numbers directly
         if char.isdigit():
@@ -29,9 +44,13 @@ def check_num(line, spelled_numbers):
                     return digit
 
 
-total = 0
 f = open(f"{fname}.txt", "r")
-for x in f.readlines():
+lines = f.readlines()
+f.close()
+
+
+total = 0
+for x in lines:
     # Do a forward check to find the first digit
     digit1 = check_num(x, spelled_numbers)
     # Do a backward check to find the last digit
@@ -39,6 +58,6 @@ for x in f.readlines():
     # append the new number
     new_number = digit1 * 10 + digit2
     total += new_number
-f.close()
+
 # output
 print(total)

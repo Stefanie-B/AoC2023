@@ -1,4 +1,4 @@
-fname = "input"
+fname = "day01/input"
 
 # list with all numbers spelled out
 spelled_numbers = [
@@ -13,9 +13,13 @@ spelled_numbers = [
     "nine",
 ]
 
-numbers = []
+# input
 f = open(f"{fname}.txt", "r")
-for x in f.readlines():
+lines = f.readlines()
+f.close()
+
+numbers = []
+for x in lines:
     digits = []
     for i, char in enumerate(x):
         # Append the numbers directly
@@ -30,6 +34,6 @@ for x in f.readlines():
     # append the new number
     new_number = digits[0] * 10 + digits[-1]
     numbers.append(new_number)
-f.close()
+
 # output
 print(sum(numbers))
