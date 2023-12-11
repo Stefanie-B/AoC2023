@@ -31,7 +31,7 @@ def expand_coords(coords):
 
 
 # Load in the text, discard endlines
-fname = "input"
+fname = "day11/input"
 f = open(f"{fname}.txt", "r")
 lines = [line.strip("\n") for line in f.readlines()]
 f.close()
