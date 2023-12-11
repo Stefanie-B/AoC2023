@@ -45,9 +45,8 @@ while start_pos < len(digitposx):
             digitposy[end_pos + 1] == digitposy[end_pos] + 1
         ):
             end_pos += 1
-    # Used to catch the end of the array
-    except:
-        IndexError
+    except IndexError:  # Used to catch the end of the array
+        pass
 
     # We check if any of the pixels within the number also overlap with a True in the extended
     # character array, which selects 'squares' around the characters

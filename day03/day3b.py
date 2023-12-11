@@ -43,9 +43,8 @@ for start_pos in range(len(starposx)):
                 digitposy[end_pos + 1] == digitposy[end_pos] + 1
             ):
                 end_pos += 1
-        # Used to catch the end of the array
-        except:
-            IndexError
+        except IndexError:  # Used to catch the end of the array
+            pass
 
         # If the number overlaps with a square around a star, append the number to the list
         if any(starrange[digitposx[start_pos], digitposy[start_pos : end_pos + 1]]):
