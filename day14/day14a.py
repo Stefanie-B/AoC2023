@@ -7,36 +7,28 @@ f = open(f"day14/{fname}.txt", "r")
 lines = [line.strip("\n") for line in f.readlines()]
 f.close()
 
+# Initialize
 size_field = len(lines)
-weight = 0
+load = 0
 rocks = np.array([0 for _ in lines[0]])
+
+# For each line, check how many round rocks you encounter before running into a barrier rock
+# And add the required load for these round rocks at that barrier
 for line_num, line in enumerate(lines[::-1]):
+    # Count round on this horizontal line
     rocks[np.where(np.array(list(line)) == "O")] += 1
+
+    # Check for square barrier rocks
     for stop in np.where(np.array(list(line)) == "#")[0]:
-        weight += sum([line_num - i for i in range(rocks[stop])])
+        # Add the load: equal to the line number for the first 'O', one less for the second etc.
+        load += sum([line_num - i for i in range(rocks[stop])])
+
+        # Remove the counted rocks for the next barrier
         rocks[stop] = 0
 
+# Also add the load of the round rocks that have shifted to the edge of the mirror
 for stop in range(len(line)):
-    weight += sum([size_field - i for i in range(rocks[stop])])
+    load += sum([size_field - i for i in range(rocks[stop])])
 
-print(weight)
-
-"""
-size_field = len(lines)
-stops = [[size_field + 1] for _ in lines[0]]
-rocks = [[] for _ in lines[0]]
-for line_number, line in enumerate(lines):
-    [
-        rocks[char_number].append(size_field - line_number)
-        for char_number, char in enumerate(list(line))
-        if char == "O"
-    ]
-    [
-        stops[char_number].append(size_field - line_number)
-        for char_number, char in enumerate(list(line))
-        if char == "#"
-    ]
-
-for col_number, stop in enumerate(stops):
-    print(rocks[col_number] < stop)
-"""
+# Output
+print(load)
