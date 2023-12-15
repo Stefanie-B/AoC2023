@@ -1,7 +1,3 @@
-# We use numpy to be able to use array indexing
-import numpy as np
-
-
 def parse_sequence(sequence):
     """
     Converts an input sequence using the HASH algorithm
